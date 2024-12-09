@@ -24,7 +24,7 @@ $user_level = $_SESSION['user_level']; // Make sure to set this session variable
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4GG Resto</title>
+    <title>On Eat</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -38,8 +38,8 @@ $user_level = $_SESSION['user_level']; // Make sure to set this session variable
     <nav class="sticky-top bg-gray-100 border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
             <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="img/logo2.png" class="h-10 rounded-full" alt="4GG Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">4GG Resto</span>
+                <img src="img/oneat-logo.png" class="h-10 rounded-full" alt="On Eat Logo" />
+                <span class="self-center text-2xl font-extrabold whitespace-nowrap text-yellow-400 dark:text-yellow-300">On Eat</span>
             </a>
             <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <div class="mr-5">

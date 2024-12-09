@@ -7,7 +7,9 @@
         <div class="flex flex-col justify-center">
             <h1
                 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                Hello there!, welcome to our 4GG Restaurant website</h1>
+                Hello there!, welcome to <span
+                    class="mb-4 text-4xl font-extrabold tracking-tight text-yellow-400 leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-yellow-300">On
+                    Eat</span> website</h1>
             <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">Here at Flowbite we
                 focus on markets where technology, innovation, and capital can unlock long-term value and drive
                 economic growth.</p>
@@ -94,6 +96,81 @@
         </div>
     </div>
 
+    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-16">
+        <div class="mx-auto grid max-w-screen-xl px-4 pb-8 md:grid-cols-12 lg:gap-12 lg:pb-16 xl:gap-0">
+            <div class="content-center justify-self-start md:col-span-7 md:text-start">
+                <h1
+                    class="mb-4 text-4xl font-extrabold leading-none tracking-tight dark:text-white md:max-w-2xl md:text-5xl xl:text-6xl">
+                    Limited Time Offer!<br />Up to 50% OFF!</h1>
+                <p class="mb-4 max-w-2xl text-gray-500 dark:text-gray-400 md:mb-12 md:text-lg mb-3 lg:mb-5 lg:text-xl">
+                    Don't Wait - Limited Stock at Unbeatable Prices!</p>
+                <a href="index.php?page=search_restaurants"
+                    class="inline-block rounded-lg bg-blue-700 px-6 py-3.5 text-center font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Shop
+                    Now</a>
+            </div>
+            <div class="hidden md:col-span-5 md:mt-0 md:flex">
+                <img class="dark:hidden"
+                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/girl-shopping-list.svg"
+                    alt="shopping illustration" />
+                <img class="hidden dark:block"
+                    src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/girl-shopping-list-dark.svg"
+                    alt="shopping illustration" />
+            </div>
+        </div>
+        <div
+            class="mx-auto grid max-w-screen-xl grid-cols-2 gap-4 text-gray-500 dark:text-gray-400 sm:grid-cols-3 sm:gap-12 lg:grid-cols-4 px-4">
+
+            <?php
+            try {
+                // Query untuk menggabungkan tabel restaurants dan users berdasarkan ID pengguna
+                $sql = "
+            SELECT 
+                restaurants.name AS restaurant_name, 
+                users.image_user 
+            FROM 
+                restaurants
+            JOIN 
+                users 
+            ON 
+                restaurants.user_id = users.id
+            WHERE 
+                users.level = 'resto'
+            LIMIT 4
+        ";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+
+                // Ambil data hasil query
+                $restaurants = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if (!empty($restaurants)) {
+                    foreach ($restaurants as $restaurant) {
+                        $nama_resto = htmlspecialchars($restaurant['restaurant_name']);
+                        $foto_profil = htmlspecialchars($restaurant['image_user']); // Path gambar
+            
+                        ?>
+                        <div class="text-center">
+                            <img src="<?= !empty($foto_profil) ? $foto_profil : 'default.png'; ?>" alt="<?= $nama_resto; ?>"
+                                class="rounded-full w-20 h-20 mx-auto object-cover border border-gray-300">
+                            <p class="mt-2 text-lg font-medium"><?= $nama_resto; ?></p>
+                        </div>
+                        <?php
+                    }
+                } else {
+                    // Pesan jika tidak ada restoran ditemukan
+                    echo "<p class='text-center col-span-full text-gray-500'>Tidak ada restoran yang ditemukan.</p>";
+                }
+            } catch (PDOException $e) {
+                // Pesan error jika koneksi atau query gagal
+                echo "<p class='text-center col-span-full text-red-500'>Koneksi gagal: " . htmlspecialchars($e->getMessage()) . "</p>";
+            }
+            ?>
+        </div>
+
+
+
+
+    </section>
 
     <!-- teamate baru -->
     <section class="bg-gray-50 dark:bg-gray-900">
@@ -102,8 +179,8 @@
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Meet Our team</h2>
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400"> Website ini dibuat untuk memenuhi
                     tugas ke 4 mata kuliah Rekayasa Perangkat Lunak. Untuk dokumentasi
-                    dapat dilihat <a class="font-medium text-indigo-500 hover:text-indigo-700" href="pdf/srs.pdf"
-                        target="_blank">disini</a>
+                    dapat dilihat <a class="font-medium text-indigo-500 hover:text-indigo-700"
+                        href="pdf/DOKUMEN-SRS-ON-EAT.pdf" target="_blank">disini</a>
                 </p>
             </div>
             <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

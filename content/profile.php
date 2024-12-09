@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="bg-gray-50 dark:bg-gray-900">
     <div class="container mx-auto max-w-screen-lg px-4 py-6">
         <div class="text-center">
-            <h1 class="text-gray-900 dark:text-white text-3xl font-bold mt-8 mb-6">Profile User</h1>
+            <h1 class="text-gray-900 dark:text-white text-3xl font-bold mt-8 mb-6">Profil Kamu</h1>
         </div>
 
         <div class="max-w-2xl mx-auto bg-gray-50 dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
@@ -91,7 +91,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Menampilkan Username (Read-only) -->
                 <div class="mb-4">
-                    <h2 class="text-gray-900 dark:text-white text-xl font-bold"><?php echo htmlspecialchars($user['username']); ?></h2>
+                    <h2 class="text-gray-900 dark:text-white text-xl font-bold">
+                        <?php echo htmlspecialchars($user['username']); ?>
+                    </h2>
                 </div>
 
                 <!-- Menampilkan Informasi Profil -->
@@ -118,37 +120,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label for="current_password"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Current
-                                Password</label>
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password Sebelumnya</label>
                             <input type="password" id="current_password" name="current_password" placeholder="●●●●●●●●"
                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
 
                         <div>
                             <label for="new_password"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">New Password</label>
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Password Baru</label>
                             <input type="password" id="new_password" name="new_password"
                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
 
                         <div>
                             <label for="confirm_password"
-                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Confirm
-                                Password</label>
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">Konfirmasi
+                                Password Baru</label>
                             <input type="password" id="confirm_password" name="confirm_password"
                                 class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>
 
-                    <!-- Tombol Simpan -->
-                    <div class="flex justify-center">
+                    <div class="flex justify-center gap-4">
+                        <!-- Tombol Hapus Akun -->
+                        <button type="button" id="delete-account-btn"
+                            class="inline-flex items-center justify-center w-auto px-4 py-2 border bg-red-600 text-white font-medium rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Hapus Akun
+                        </button>
+                        <!-- Tombol Simpan -->
                         <button type="submit"
                             class="inline-flex items-center justify-center w-auto px-4 py-2 border bg-indigo-600 text-white font-medium rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Save change
+                            Simpan Perubahan
                         </button>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('delete-account-btn').addEventListener('click', function () {
+        if (confirm('Apakah Anda yakin ingin menghapus akun Anda? Semua informasi tentang anda akan dihapus.')) {
+            // Redirect ke halaman PHP untuk proses penghapusan akun
+            window.location.href = 'index.php?page=delete_account';
+        }
+    });
+</script>
